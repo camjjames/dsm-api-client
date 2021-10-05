@@ -1,0 +1,10 @@
+logging:
+  level:
+    root: INFO
+    org.flaad.deepstack.client: DEBUG
+    com.github.tomakehurst.wiremock: DEBUG
+
+dsm:
+  url: http://localhost:9561/
+
+

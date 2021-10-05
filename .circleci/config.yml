@@ -1,0 +1,36 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+      # Use build and package the project
+      - run:
+          name: Build
+          command: mvn -B -V -DskipTests clean package
+      # Run the tests and generate the different reports for sonar!
+      - run:
+          name: Test
+          command: mvn org.jacoco:jacoco-maven-plugin:prepare-agent package org.jacoco:jacoco-maven-plugin:report
+      # Run the sonar-scanner
+      - sonarcloud/scan:
+          sonar_token_variable_name: SONAR_TOKEN
+          cache_version: 1
+      # Save artifacts
+      - store_artifacts:
+          path: /target
+      # Upload test results
+      - store_test_results:
+          path: /target/surefire-reports
+
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.2
+
+workflows:
+  main:
+    jobs:
+      - build:
+          context: Flaad-Enterprises
