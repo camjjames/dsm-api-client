@@ -16,15 +16,13 @@ public class SurveillanceStationInfo {
     private int customizedPortHttp;
     private int customizedPortHttps;
     private int cameraNumber;
-    private int licenseNumber;
+    private int liscenseNumber;
     private int maxCameraSupport;
+    private int maxLanPort;
     private String serial;
     private boolean isAdmin;
     private int userPriv;
     private boolean isLicenseEnough;
-    private boolean allowSnapshot;
-    private boolean allowManualRec;
-    private boolean allowDeleteRec;
 
     @JsonCreator
     public SurveillanceStationInfo(
@@ -33,29 +31,25 @@ public class SurveillanceStationInfo {
             @JsonProperty("customizedPortHttp") int customizedPortHttp,
             @JsonProperty("customizedPortHttps") int customizedPortHttps,
             @JsonProperty("cameraNumber") int cameraNumber,
-            @JsonProperty("licenseNumber") int licenseNumber,
+            @JsonProperty("liscenseNumber") int liscenseNumber,
             @JsonProperty("maxCameraSupport") int maxCameraSupport,
+            @JsonProperty("maxlanport") int maxLanPort,
             @JsonProperty("serial") String serial,
             @JsonProperty("isAdmin") boolean isAdmin,
             @JsonProperty("userPriv") int userPriv,
-            @JsonProperty("isLicenseEnough") boolean isLicenseEnough,
-            @JsonProperty("allowSnapshot") boolean allowSnapshot,
-            @JsonProperty("allowManualRec") boolean allowManualRec,
-            @JsonProperty("allowDeleteRec") boolean allowDeleteRec) {
+            @JsonProperty("isLicenseEnough") boolean isLicenseEnough) {
         this.version = version;
         this.path = path;
         this.customizedPortHttp = customizedPortHttp;
         this.customizedPortHttps = customizedPortHttps;
         this.cameraNumber = cameraNumber;
-        this.licenseNumber = licenseNumber;
+        this.liscenseNumber = liscenseNumber;
         this.maxCameraSupport = maxCameraSupport;
+        this.maxLanPort = maxLanPort;
         this.serial = serial;
         this.isAdmin = isAdmin;
         this.userPriv = userPriv;
         this.isLicenseEnough = isLicenseEnough;
-        this.allowSnapshot = allowSnapshot;
-        this.allowManualRec = allowManualRec;
-        this.allowDeleteRec = allowDeleteRec;
     }
 
 }

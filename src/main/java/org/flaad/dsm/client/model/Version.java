@@ -13,15 +13,18 @@ public class Version {
 
     private int major;
     private int minor;
+    private int small;
     private int build;
 
     @JsonCreator
     public Version(
             @JsonProperty("major") int major,
             @JsonProperty("minor") int minor,
+            @JsonProperty("small") int small,
             @JsonProperty("build") int build) {
         this.major = major;
         this.minor = minor;
+        this.small = small;
         this.build = build;
     }
 

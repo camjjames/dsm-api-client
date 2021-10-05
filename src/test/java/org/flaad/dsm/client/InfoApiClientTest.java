@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
-public class InfoApiClientTest extends DsmApiClient {
+class InfoApiClientTest extends DsmApiClient {
 
     @Test
     void whenGetApiInfo_thenApiListIsReturned() throws IOException {

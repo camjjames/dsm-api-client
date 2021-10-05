@@ -49,7 +49,7 @@ class DsmApiClient {
 
     /* Set up WireMock for synology API info endpoint */
     void setupWireMock_DsmSurveillanceInfoEndpoint(String location, int version, String method) throws IOException {
-        StringBuilder url = new StringBuilder("/webapi/query.cgi?api=SYNO.API.Info")
+        StringBuilder url = new StringBuilder("/webapi/query.cgi?api=SYNO.SurveillanceStation.Info")
                 .append("&version=").append(version)
                 .append("&method=").append(method);
         stubFor(get(urlEqualTo(url.toString()))

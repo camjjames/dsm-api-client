@@ -21,8 +21,6 @@ import java.lang.reflect.Type;
 @Component
 public class DsmDecoder implements Decoder {
 
-    private static final String SID = "sid";
-
     private final Decoder delegate;
 
     @Autowired
