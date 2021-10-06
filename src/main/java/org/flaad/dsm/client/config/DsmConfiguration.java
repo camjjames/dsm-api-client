@@ -16,4 +16,9 @@ public class DsmConfiguration {
         return new DsmAuthenticationToken();
     }
 
+    @Bean
+    public DsmApiInformation setupApiInfDetails() {
+        return new DsmApiInformation();
+    }
+
 }

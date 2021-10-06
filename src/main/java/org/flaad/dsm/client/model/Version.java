@@ -4,17 +4,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 @JsonDeserialize
 public class Version {
 
-    private int major;
-    private int minor;
-    private int small;
-    private int build;
+    private final int major;
+    private final int minor;
+    private final int small;
+    private final int build;
 
     @JsonCreator
     public Version(

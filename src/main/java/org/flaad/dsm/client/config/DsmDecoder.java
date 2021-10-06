@@ -5,6 +5,7 @@ import feign.Response;
 import feign.codec.DecodeException;
 import feign.codec.Decoder;
 import lombok.extern.slf4j.Slf4j;
+import org.flaad.dsm.client.model.ApiInfo;
 import org.flaad.dsm.client.model.AuthSessionToken;
 import org.flaad.dsm.client.model.DsmApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class DsmDecoder implements Decoder {
 
     @Autowired
     private DsmAuthenticationToken authDetails;
+    @Autowired
+    private DsmApiInformation apiInfo;
 
     public DsmDecoder(Decoder delegate) {
         this.delegate = delegate;
@@ -34,11 +37,25 @@ public class DsmDecoder implements Decoder {
     public Object decode(Response response, Type type) throws IOException, DecodeException, FeignException {
         Object feignResponse = delegate.decode(response, type);
 
-        if (feignResponse instanceof DsmApiResponse && ((DsmApiResponse<?>) feignResponse).getData() instanceof AuthSessionToken) {
-            authDetails.setAuthToken(((AuthSessionToken) ((DsmApiResponse<?>) feignResponse).getData()).getSid());
+        if (feignResponse instanceof DsmApiResponse) {
+            if (!apiInfo.isSetup() && ((DsmApiResponse<?>) feignResponse).getData() instanceof ApiInfo.ApiInfoList) {
+                log.debug("Saving API Details for later use!");
+                constructApiInfo(((DsmApiResponse<ApiInfo.ApiInfoList>) feignResponse).getData());
+            }
+
+            if (((DsmApiResponse<?>) feignResponse).getData() instanceof AuthSessionToken) {
+                log.debug("Saving Auth Security Token for later use!");
+                authDetails.setAuthToken(((AuthSessionToken) ((DsmApiResponse<?>) feignResponse).getData()).getSid());
+            }
         }
 
         return feignResponse;
+    }
+
+    private void constructApiInfo(ApiInfo.ApiInfoList data) {
+        for (ApiInfo info : data.getApiInfos()) {
+            apiInfo.addApiDetail(info.getApi(), info.getMinVersion(), info.getMaxVersion(), info.getPath(), info.getRequestFormat());
+        }
     }
 
 }

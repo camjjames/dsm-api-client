@@ -4,25 +4,22 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 @JsonDeserialize
 public class SurveillanceStationInfo {
 
-    private Version version;
-    private String path;
-    private int customizedPortHttp;
-    private int customizedPortHttps;
-    private int cameraNumber;
-    private int liscenseNumber;
-    private int maxCameraSupport;
-    private int maxLanPort;
-    private String serial;
-    private boolean isAdmin;
-    private int userPriv;
-    private boolean isLicenseEnough;
+    private final Version version;
+    private final String path;
+    private final int customizedPortHttp;
+    private final int customizedPortHttps;
+    private final int cameraNumber;
+    private final int liscenseNumber;
+    private final int maxCameraSupport;
+    private final int maxLanPort;
+    private final String serial;
+    private final int userPriv;
+    private final boolean isLicenseEnough;
 
     @JsonCreator
     public SurveillanceStationInfo(
@@ -35,7 +32,6 @@ public class SurveillanceStationInfo {
             @JsonProperty("maxCameraSupport") int maxCameraSupport,
             @JsonProperty("maxlanport") int maxLanPort,
             @JsonProperty("serial") String serial,
-            @JsonProperty("isAdmin") boolean isAdmin,
             @JsonProperty("userPriv") int userPriv,
             @JsonProperty("isLicenseEnough") boolean isLicenseEnough) {
         this.version = version;
@@ -47,7 +43,6 @@ public class SurveillanceStationInfo {
         this.maxCameraSupport = maxCameraSupport;
         this.maxLanPort = maxLanPort;
         this.serial = serial;
-        this.isAdmin = isAdmin;
         this.userPriv = userPriv;
         this.isLicenseEnough = isLicenseEnough;
     }

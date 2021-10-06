@@ -32,6 +32,8 @@ class SurveillanceInfoApiClientTest extends DsmApiClient {
         assertThat(response.getData().getLiscenseNumber(), equalTo(6));
         assertThat(response.getData().getMaxCameraSupport(), equalTo(40));
         assertThat(response.getData().getMaxLanPort(), equalTo(2));
+        assertThat(response.getData().isLicenseEnough(), equalTo(true));
+        assertThat(response.getData().getUserPriv(), equalTo(1));
 
         assertThat(response.getData().getVersion(), is(notNullValue()));
         assertThat(response.getData().getVersion().getMajor(), equalTo(8));

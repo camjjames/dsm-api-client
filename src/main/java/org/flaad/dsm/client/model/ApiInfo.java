@@ -1,27 +1,26 @@
 package org.flaad.dsm.client.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor
 @JsonDeserialize
+@Component
 public class ApiInfo {
 
-    private String api;
-    private String minVersion;
-    private String maxVersion;
-    private String path;
-    private String requestFormat;
+    private final String api;
+    private final String minVersion;
+    private final String maxVersion;
+    private final String path;
+    private final String requestFormat;
 
     public ApiInfo(String api, String minVersion, String maxVersion, String path, String requestFormat) {
         this.api = api;
