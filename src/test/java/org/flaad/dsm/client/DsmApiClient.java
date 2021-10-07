@@ -67,13 +67,32 @@ class DsmApiClient {
         setupStub(url.toString(), location);
     }
 
-    /* Set up WireMock for synology API info endpoint */
+    /* Set up WireMock for synology Surveillance API info endpoint */
     void setupWireMock_DsmSurveillanceInfoEndpoint(String location, int version, String method) throws IOException {
         StringBuilder url = new StringBuilder("/webapi/entry.cgi?api=SYNO.SurveillanceStation.Info")
                 .append("&version=").append(version)
                 .append("&method=").append(method);
         setupStub(url.toString(), location);
     }
+
+    /* Set up WireMock for synology Surveillance Camera API endpoint */
+    void setupWireMock_DsmSurveillanceCameraEndpoint(String location, int version, String method) throws IOException {
+        StringBuilder url = new StringBuilder("/webapi/entry.cgi?api=SYNO.SurveillanceStation.Camera")
+                .append("&version=").append(version)
+                .append("&method=").append(method);
+        setupStub(url.toString(), location);
+    }
+
+    /* Set up WireMock for synology Surveillance Camera API endpoint */
+    void setupWireMock_DsmSurveillanceCameraEndpoint(String location, int version, String method, String cameras) throws IOException {
+        StringBuilder url = new StringBuilder("/webapi/entry.cgi?api=SYNO.SurveillanceStation.Camera")
+                .append("&version=").append(version)
+                .append("&method=").append(method)
+                .append("&cameras=").append(cameras);
+        setupStub(url.toString(), location);
+    }
+
+
 
 
     /* Define the stub for the Test. */

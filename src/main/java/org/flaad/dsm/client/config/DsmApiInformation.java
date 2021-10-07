@@ -9,25 +9,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Setter
 @NoArgsConstructor
 public class DsmApiInformation {
 
     private boolean setup = false;
-    private List<ApiDetails> apiList = new ArrayList<>();
+    private final List<ApiDetails> apiList = new ArrayList<>();
 
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    private static class ApiDetails {
-        private String api;
-        private String minVersion;
-        private String maxVersion;
-        private String path;
-        private String requestFormat;
+    public void setSetup(boolean hasBeenSetup) {
+        this.setup = hasBeenSetup;
     }
 
     public void addApiDetail(String api, String minVersion, String maxVersion, String path, String requestFormat) {
         apiList.add(new ApiDetails(api, minVersion, maxVersion, path, requestFormat));
     }
+
+    @Getter
+    @AllArgsConstructor
+    private static class ApiDetails {
+        private final String api;
+        private final String minVersion;
+        private final String maxVersion;
+        private final String path;
+        private final String requestFormat;
+    }
+
 }

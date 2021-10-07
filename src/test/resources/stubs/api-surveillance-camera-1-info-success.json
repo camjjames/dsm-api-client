@@ -1,0 +1,14 @@
+{
+  "data": {
+    "cameras": [
+      {
+        "blAudioPriv": true,
+        "blLiveviewPriv": true,
+        "camPath": "cnRzcDovL2FkbWluOjIwMjBIVmZyZWQzNjAhQDE5Mi4xNjguMS4yNDA6NTU0L1N0cmVhbWluZy9jaGFubmVscy8xMDI=",
+        "id": null,
+        "privilege": 31
+      }
+    ]
+  },
+  "success": true
+}

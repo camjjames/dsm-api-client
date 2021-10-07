@@ -41,6 +41,7 @@ public class DsmDecoder implements Decoder {
             if (!apiInfo.isSetup() && ((DsmApiResponse<?>) feignResponse).getData() instanceof ApiInfo.ApiInfoList) {
                 log.debug("Saving API Details for later use!");
                 constructApiInfo(((DsmApiResponse<ApiInfo.ApiInfoList>) feignResponse).getData());
+                apiInfo.setSetup(true);
             }
 
             if (((DsmApiResponse<?>) feignResponse).getData() instanceof AuthSessionToken) {

@@ -9,7 +9,6 @@ import java.io.IOException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
@@ -26,14 +25,21 @@ class SurveillanceInfoApiClientTest extends DsmApiClient {
 
         assertThat(response.getData().getCameraNumber(), equalTo(6));
         assertThat(response.getData().getPath(), equalTo("/webman/3rdparty/SurveillanceStation/"));
-        assertThat(response.getData().getCustomizedPortHttp(), equalTo(6400));
-        assertThat(response.getData().getCustomizedPortHttps(), equalTo(6401));
-        assertThat(response.getData().getSerial(), equalTo("19B0PDN587510"));
+        assertThat(response.getData().getCustomizedPortHttp(), equalTo(222));
+        assertThat(response.getData().getCustomizedPortHttps(), equalTo(223));
+        assertThat(response.getData().getSerial(), equalTo("123456789"));
         assertThat(response.getData().getLiscenseNumber(), equalTo(6));
         assertThat(response.getData().getMaxCameraSupport(), equalTo(40));
-        assertThat(response.getData().getMaxLanPort(), equalTo(2));
-        assertThat(response.getData().isLicenseEnough(), equalTo(true));
+        assertThat(response.getData().getIsLicenseEnough(), equalTo(1));
         assertThat(response.getData().getUserPriv(), equalTo(1));
+        assertThat(response.getData().isEnableVideoRelay(), equalTo(false));
+        assertThat(response.getData().getHostname(), equalTo("homenas"));
+        assertThat(response.getData().getPluginHelperVersion(), equalTo(""));
+        assertThat(response.getData().getProductName(), equalTo("DiskStation"));
+        assertThat(response.getData().getTimezone(), equalTo("Sydney"));
+        assertThat(response.getData().getTimezoneTZDB(), equalTo("Australia/Sydney"));
+        assertThat(response.getData().getUid(), equalTo(1028));
+        assertThat(response.getData().getWebPluginVersion(), equalTo(""));
 
         assertThat(response.getData().getVersion(), is(notNullValue()));
         assertThat(response.getData().getVersion().getMajor(), equalTo(8));

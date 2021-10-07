@@ -11,9 +11,7 @@ public class DsmRequestInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate template) {
-        // TODO: Use the DsmApiInfo object to check over the request and ensure we using the right path,
-        //  version within range and header is set for the json
-
+        // Add the _sid request parm to each request if it exists.
         if (authDetails.getAuthToken() != null) {
             template.query("_sid", authDetails.getAuthToken());
         }
