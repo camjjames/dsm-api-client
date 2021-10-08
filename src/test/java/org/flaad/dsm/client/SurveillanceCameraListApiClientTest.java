@@ -2,6 +2,7 @@ package org.flaad.dsm.client;
 
 import org.flaad.dsm.client.model.DsmApiResponse;
 import org.flaad.dsm.client.model.SurveillanceStationCameraDetail;
+import org.flaad.dsm.client.request.CameraListRequest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -16,8 +17,10 @@ class SurveillanceCameraListApiClientTest extends DsmApiClient {
 
     @Test
     void whenGetSurveillanceCameraList_thenCameraDetailsListIsReturned() throws IOException {
-        setupWireMock_DsmSurveillanceCameraEndpoint("stubs/api-surveillance-camera-list-success.json", 9, "List");
-        DsmApiResponse<SurveillanceStationCameraDetail.CameraList> response = surveillanceClient.getSurveillanceCameraList(9, "List");
+        setupWireMock_DsmSurveillanceCameraEndpoint("stubs/api-surveillance-camera-list-success.json");
+
+        CameraListRequest request = CameraListRequest.builder().version(9).method("List").build();
+        DsmApiResponse<SurveillanceStationCameraDetail.CameraList> response = surveillanceClient.getSurveillanceCameraList(request);
 
         assertThat(response.isSuccess(), is(true));
         assertThat(response.getData(), is(notNullValue()));
@@ -26,20 +29,10 @@ class SurveillanceCameraListApiClientTest extends DsmApiClient {
         assertThat(response.getData().getCameras(), is(notNullValue()));
         assertThat(response.getData().getCameras().size(), equalTo(6));
 
-        assertThat(response.getData().getCameras().get(0).getDiNum(), equalTo(0));
-        assertThat(response.getData().getCameras().get(0).getDoNum(), equalTo(0));
-        assertThat(response.getData().getCameras().get(0).getAudioCodec(), equalTo(0));
-        assertThat(response.getData().getCameras().get(0).getChannel(), equalTo("1"));
         assertThat(response.getData().getCameras().get(0).getDsId(), equalTo(0));
         assertThat(response.getData().getCameras().get(0).isEnableLowProfile(), equalTo(true));
         assertThat(response.getData().getCameras().get(0).isEnableRecordingKeepSize(), equalTo(true));
         assertThat(response.getData().getCameras().get(0).isEnableRecordingKeepDays(), equalTo(false));
-        assertThat(response.getData().getCameras().get(0).getFov(), equalTo(""));
-        assertThat(response.getData().getCameras().get(0).getLowProfileStreamNo(), equalTo(2));
-        assertThat(response.getData().getCameras().get(0).getMediumProfileStreamNo(), equalTo(2));
-        assertThat(response.getData().getCameras().get(0).getHighProfileStreamNo(), equalTo(1));
-        assertThat(response.getData().getCameras().get(0).getId(), equalTo(1));
-        assertThat(response.getData().getCameras().get(0).getIdOnRecServer(), equalTo(0));
         assertThat(response.getData().getCameras().get(0).getIp(), equalTo("10.1.10.240"));
         assertThat(response.getData().getCameras().get(0).getModel(), equalTo("abcd"));
         assertThat(response.getData().getCameras().get(0).getNewName(), equalTo("1"));
@@ -49,17 +42,15 @@ class SurveillanceCameraListApiClientTest extends DsmApiClient {
         assertThat(response.getData().getCameras().get(0).getRecordTime(), equalTo(30));
         assertThat(response.getData().getCameras().get(0).getRecordingKeepSize(), equalTo("200"));
         assertThat(response.getData().getCameras().get(0).getRecordingKeepDays(), equalTo(30));
-        assertThat(response.getData().getCameras().get(0).getStatus(), equalTo(1));
-        assertThat(response.getData().getCameras().get(0).getTvStandard(), equalTo(1));
         assertThat(response.getData().getCameras().get(0).getVendor(), equalTo("HIKVISION"));
-        assertThat(response.getData().getCameras().get(0).getVideoCodec(), equalTo(8));
-        assertThat(response.getData().getCameras().get(0).getVideoMode(), equalTo(""));
     }
 
     @Test
     void whenGetSurveillanceCameraList_thenFailedToGetCamerasIsReturned() throws IOException {
-        setupWireMock_DsmSurveillanceCameraEndpoint("stubs/api-surveillance-camera-list-failure.json", 9, "List");
-        DsmApiResponse<SurveillanceStationCameraDetail.CameraList> response = surveillanceClient.getSurveillanceCameraList(9, "List");
+        setupWireMock_DsmSurveillanceCameraEndpoint("stubs/api-surveillance-camera-list-failure.json");
+
+        CameraListRequest request = CameraListRequest.builder().version(9).method("List").build();
+        DsmApiResponse<SurveillanceStationCameraDetail.CameraList> response = surveillanceClient.getSurveillanceCameraList(request);
 
         assertThat(response.isSuccess(), is(false));
         assertThat(response.getData(), is(nullValue()));

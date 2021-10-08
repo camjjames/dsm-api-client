@@ -3,6 +3,7 @@ package org.flaad.dsm.client.config;
 import org.flaad.dsm.client.client.DsmAuthClient;
 import org.flaad.dsm.client.client.DsmClient;
 import org.flaad.dsm.client.client.DsmSurveillanceClient;
+import org.flaad.dsm.client.model.DsmApiInformation;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

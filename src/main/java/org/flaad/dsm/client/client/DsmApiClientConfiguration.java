@@ -1,8 +1,10 @@
-package org.flaad.dsm.client.config;
+package org.flaad.dsm.client.client;
 
 import feign.RequestInterceptor;
 import feign.codec.Decoder;
 import feign.optionals.OptionalDecoder;
+import org.flaad.dsm.client.config.DsmDecoder;
+import org.flaad.dsm.client.config.DsmRequestInterceptor;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;

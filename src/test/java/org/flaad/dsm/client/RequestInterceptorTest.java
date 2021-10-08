@@ -2,9 +2,9 @@ package org.flaad.dsm.client;
 
 import org.flaad.dsm.client.model.AuthSessionToken;
 import org.flaad.dsm.client.model.DsmApiResponse;
+import org.flaad.dsm.client.request.AuthRequest;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.annotation.DirtiesContext;
 
 import java.io.IOException;
 
@@ -19,8 +19,10 @@ class RequestInterceptorTest extends DsmApiClient {
     @Test
     @Order(1)
     void whenGetAuthTokenApi_thenAuthTokenIsReturned() throws IOException {
-        setupWireMock_DsmAuthEndpoint("stubs/api-auth-get-success.json", 6, "login", "user", "pwd");
-        DsmApiResponse<AuthSessionToken> response = authClient.login(6, "login", "user", "pwd");
+        setupWireMock_DsmAuthEndpoint("stubs/api-auth-get-success.json");
+
+        AuthRequest authRequest = AuthRequest.builder().version(6).method("login").account("user").passwd("pwd").build();
+        DsmApiResponse<AuthSessionToken> response = authClient.login(authRequest);
 
         assertThat(response.isSuccess(), is(true));
         assertThat(response.getData(), is(notNullValue()));
@@ -34,9 +36,10 @@ class RequestInterceptorTest extends DsmApiClient {
     @Test
     @Order(2)
     void whenGetAuthTokenApi_thenPasswordIncorrectErrorReturned() throws IOException {
-        String sid = "xsv0LlUcCf16V4Sp9XdGBirVp0BcxL6x91f-crJSCis7lSsmTxI_f5vNagdmwKGp3C2vpOJW2TQXBuNAyxPEok";
-        setupWireMock_DsmSidAuthEndpoint("stubs/api-auth-get-success.json", 6, "login", "user", "pwd", sid);
-        DsmApiResponse<AuthSessionToken> response = authClient.login(6, "login", "user", "pwd");
+        setupWireMock_DsmAuthEndpoint("stubs/api-auth-get-success.json");
+
+        AuthRequest authRequest = AuthRequest.builder().version(6).method("login").account("user").passwd("pwd").build();
+        DsmApiResponse<AuthSessionToken> response = authClient.login(authRequest);
 
         assertThat(response.isSuccess(), is(true));
         assertThat(response.getData(), is(notNullValue()));

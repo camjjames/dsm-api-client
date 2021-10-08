@@ -1,4 +1,4 @@
-package org.flaad.dsm.client.config;
+package org.flaad.dsm.client.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

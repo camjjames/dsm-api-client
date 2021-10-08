@@ -7,6 +7,7 @@ import feign.codec.Decoder;
 import lombok.extern.slf4j.Slf4j;
 import org.flaad.dsm.client.model.ApiInfo;
 import org.flaad.dsm.client.model.AuthSessionToken;
+import org.flaad.dsm.client.model.DsmApiInformation;
 import org.flaad.dsm.client.model.DsmApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

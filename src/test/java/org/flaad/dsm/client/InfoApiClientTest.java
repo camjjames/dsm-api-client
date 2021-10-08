@@ -2,6 +2,7 @@ package org.flaad.dsm.client;
 
 import org.flaad.dsm.client.model.ApiInfo;
 import org.flaad.dsm.client.model.DsmApiResponse;
+import org.flaad.dsm.client.request.ApiInfoRequest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -16,8 +17,10 @@ class InfoApiClientTest extends DsmApiClient {
 
     @Test
     void whenGetApiInfo_thenApiListIsReturned() throws IOException {
-        setupWireMock_DsmInfoEndpoint("stubs/api-info-get-success.json", 1, "query", "all");
-        DsmApiResponse<ApiInfo.ApiInfoList> response = dsmClient.getApiInfo(1, "query", "all");
+        setupWireMock_DsmInfoEndpoint("stubs/api-info-get-success.json");
+
+        ApiInfoRequest apiInfoRequest = ApiInfoRequest.builder().version(1).method("query").method("all").build();
+        DsmApiResponse<ApiInfo.ApiInfoList> response = dsmClient.getApiInfo(apiInfoRequest);
 
         assertThat(response.isSuccess(), is(true));
         assertThat(response.getData(), is(notNullValue()));
@@ -28,8 +31,10 @@ class InfoApiClientTest extends DsmApiClient {
 
     @Test
     void whenGetApiInfoForAuth_thenApiListIsReturned() throws IOException {
-        setupWireMock_DsmInfoEndpoint("stubs/api-info-get-single-success.json", 1, "query", "SYNO.API.auth");
-        DsmApiResponse<ApiInfo.ApiInfoList> response = dsmClient.getApiInfo(1, "query", "SYNO.API.auth");
+        setupWireMock_DsmInfoEndpoint("stubs/api-info-get-single-success.json");
+
+        ApiInfoRequest apiInfoRequest = ApiInfoRequest.builder().version(1).method("query").method("SYNO.API.auth").build();
+        DsmApiResponse<ApiInfo.ApiInfoList> response = dsmClient.getApiInfo(apiInfoRequest);
 
         assertThat(response.isSuccess(), is(true));
         assertThat(response.getData(), is(notNullValue()));
