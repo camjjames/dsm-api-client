@@ -3,6 +3,7 @@ package org.flaad.dsm.client;
 import org.flaad.dsm.client.model.DsmApiResponse;
 import org.flaad.dsm.client.model.SurveillanceStationInfo;
 import org.flaad.dsm.client.request.CameraInfoRequest;
+import org.flaad.dsm.client.request.DsmRequest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ class SurveillanceInfoApiClientTest extends DsmApiClient {
     void whenGetSurveillanceApiInfo_thenApiInfoIsReturned() throws IOException {
         setupWireMock_DsmSurveillanceInfoEndpoint("stubs/api-surveillance-info-get-success.json");
 
-        CameraInfoRequest request = CameraInfoRequest.builder().version(8).method("GetInfo").build();
+        DsmRequest request = DsmRequest.builder().version(8).method("GetInfo").build();
         DsmApiResponse<SurveillanceStationInfo> response = surveillanceClient.getSurveillanceInfo(request);
 
         assertThat(response.isSuccess(), is(true));
@@ -55,7 +56,7 @@ class SurveillanceInfoApiClientTest extends DsmApiClient {
     void whenGetSurveillanceApiInfo_thenNotFoundErrorReturned() throws IOException {
         setupWireMock_DsmSurveillanceInfoEndpoint("stubs/api-surveillance-info-get-failure.json");
 
-        CameraInfoRequest request = CameraInfoRequest.builder().version(8).method("GetInfo").build();
+        DsmRequest request = DsmRequest.builder().version(8).method("GetInfo").build();
         DsmApiResponse<SurveillanceStationInfo> response = surveillanceClient.getSurveillanceInfo(request);
 
         assertThat(response.isSuccess(), is(false));

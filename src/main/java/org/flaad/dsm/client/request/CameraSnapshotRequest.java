@@ -6,13 +6,15 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-public class ApiInfoRequest {
+public class CameraSnapshotRequest {
 
     @Builder.Default
-    int version = 1;
+    int version = 9;
     @Builder.Default
-    String method = "query";
-
-    private String query;
+    String method = "GetSnapshot";
+    private String id;
+    private String name;
+    private int dsid;
+    private int profileType;
 
 }

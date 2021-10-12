@@ -19,7 +19,7 @@ class SurveillanceCameraInfoApiClientTest extends DsmApiClient {
     void whenGetSurveillanceCameraInfo_thenCameraInfoIsReturned() throws IOException {
         setupWireMock_DsmSurveillanceCameraEndpoint("stubs/api-surveillance-camera-1-info-success.json");
 
-        CameraInfoRequest request = CameraInfoRequest.builder().version(8).method("GetInfo").cameras("1").build();
+        CameraInfoRequest request = CameraInfoRequest.builder().cameras("1").build();
         DsmApiResponse<SurveillanceStationCameraInfo.CameraList> response = surveillanceClient.getSurveillanceCameraInfo(request);
 
         assertThat(response.isSuccess(), is(true));
@@ -40,7 +40,7 @@ class SurveillanceCameraInfoApiClientTest extends DsmApiClient {
     void whenGetSurveillanceCameraInfo_thenCameraInfoIsReturned_WithBasic() throws IOException {
         setupWireMock_DsmSurveillanceCameraEndpoint("stubs/api-surveillance-camera-1-info-success.json");
 
-        CameraInfoRequest request = CameraInfoRequest.builder().version(8).method("GetInfo").cameras("1").basic(true).build();
+        CameraInfoRequest request = CameraInfoRequest.builder().cameras("1").basic(true).build();
         DsmApiResponse<SurveillanceStationCameraInfo.CameraList> response = surveillanceClient.getSurveillanceCameraInfo(request);
 
         assertThat(response.isSuccess(), is(true));

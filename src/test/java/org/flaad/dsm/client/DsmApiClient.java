@@ -20,7 +20,6 @@ import java.nio.charset.StandardCharsets;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 
 @ActiveProfiles("test")
@@ -40,27 +39,33 @@ class DsmApiClient {
 
     /* Set up WireMock for synology API info endpoint */
     void setupWireMock_DsmInfoEndpoint(String location) throws IOException {
-        setupStub("\\/webapi\\/query\\.cgi\\?api=SYNO\\.API\\.Info(\\&(.)*)?", location);
+        setupJsonStub("\\/webapi\\/query\\.cgi\\?api=SYNO\\.API\\.Info(\\&(.)*)?", location);
     }
 
     /* Set up WireMock for synology API info endpoint */
     void setupWireMock_DsmAuthEndpoint (String location) throws IOException {
-        setupStub("\\/webapi\\/query\\.cgi\\?api=SYNO\\.API\\.Auth(\\&(.)*)?", location);
+        setupJsonStub("\\/webapi\\/query\\.cgi\\?api=SYNO\\.API\\.Auth(\\&(.)*)?", location);
     }
 
     /* Set up WireMock for synology Surveillance API info endpoint */
     void setupWireMock_DsmSurveillanceInfoEndpoint(String location) throws IOException {
-        setupStub("\\/webapi\\/entry\\.cgi\\?api=SYNO\\.SurveillanceStation\\.Info(\\&(.)*)?", location);
+        setupJsonStub("\\/webapi\\/entry\\.cgi\\?api=SYNO\\.SurveillanceStation\\.Info(\\&(.)*)?", location);
     }
 
     /* Set up WireMock for synology Surveillance Camera API endpoint */
     void setupWireMock_DsmSurveillanceCameraEndpoint(String location) throws IOException {
-        setupStub("\\/webapi\\/entry\\.cgi\\?api=SYNO\\.SurveillanceStation\\.Camera(\\&(.)*)?", location);
+        setupJsonStub("\\/webapi\\/entry\\.cgi\\?api=SYNO\\.SurveillanceStation\\.Camera(\\&(.)*)?", location);
+    }
+
+
+    /* Set up WireMock for synology Surveillance Camera API endpoint */
+    void setupWireMock_DsmSurveillanceCameraSnapshotEndpoint(String location) throws IOException {
+        setupJpegStub("\\/webapi\\/entry\\.cgi\\?api=SYNO\\.SurveillanceStation\\.Camera(\\&(.)*)?", location);
     }
 
 
     /* Define the stub for the Test. */
-    private void setupStub(String url, String location) throws IOException {
+    private void setupJsonStub(String url, String location) throws IOException {
         stubFor(get(urlMatching(url))
                 .willReturn(aResponse()
                         .withStatus(HttpStatus.OK.value())
@@ -68,8 +73,22 @@ class DsmApiClient {
                         .withBody(read(location))));
     }
 
+    /* Set up an endpoint that returns an image as the response. */
+    private void setupJpegStub(String url, String location) throws IOException {
+        stubFor(get(urlMatching(url))
+                .willReturn(aResponse()
+                        .withStatus(HttpStatus.OK.value())
+                        .withHeader("Content-Type", MediaType.IMAGE_JPEG_VALUE)
+                        .withBody(readBytes(location))));
+    }
+
     /* Read a file from the filesystem and return its contents as a String */
     private String read(String location) throws IOException {
         return IOUtils.toString(new ClassPathResource(location).getInputStream(), StandardCharsets.UTF_8);
+    }
+
+    /* Read in an image and return the byte array. */
+    private byte[] readBytes(String location) throws IOException {
+        return IOUtils.toByteArray(new ClassPathResource(location).getInputStream());
     }
 }

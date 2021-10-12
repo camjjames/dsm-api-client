@@ -19,7 +19,7 @@ class SurveillanceCameraListApiClientTest extends DsmApiClient {
     void whenGetSurveillanceCameraList_thenCameraDetailsListIsReturned() throws IOException {
         setupWireMock_DsmSurveillanceCameraEndpoint("stubs/api-surveillance-camera-list-success.json");
 
-        CameraListRequest request = CameraListRequest.builder().version(9).method("List").build();
+        CameraListRequest request = CameraListRequest.builder().build();
         DsmApiResponse<SurveillanceStationCameraDetail.CameraList> response = surveillanceClient.getSurveillanceCameraList(request);
 
         assertThat(response.isSuccess(), is(true));
@@ -49,7 +49,7 @@ class SurveillanceCameraListApiClientTest extends DsmApiClient {
     void whenGetSurveillanceCameraList_thenFailedToGetCamerasIsReturned() throws IOException {
         setupWireMock_DsmSurveillanceCameraEndpoint("stubs/api-surveillance-camera-list-failure.json");
 
-        CameraListRequest request = CameraListRequest.builder().version(9).method("List").build();
+        CameraListRequest request = CameraListRequest.builder().build();
         DsmApiResponse<SurveillanceStationCameraDetail.CameraList> response = surveillanceClient.getSurveillanceCameraList(request);
 
         assertThat(response.isSuccess(), is(false));

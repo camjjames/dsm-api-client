@@ -1,11 +1,17 @@
 package org.flaad.dsm.client.request;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-public class AuthRequest extends DsmRequest {
+public class AuthRequest {
+
+    @Builder.Default
+    int version = 6;
+    @Builder.Default
+    String method = "Login";
 
     String account;
     String passwd;

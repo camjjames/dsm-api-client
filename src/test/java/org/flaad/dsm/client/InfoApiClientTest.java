@@ -19,7 +19,7 @@ class InfoApiClientTest extends DsmApiClient {
     void whenGetApiInfo_thenApiListIsReturned() throws IOException {
         setupWireMock_DsmInfoEndpoint("stubs/api-info-get-success.json");
 
-        ApiInfoRequest apiInfoRequest = ApiInfoRequest.builder().version(1).method("query").method("all").build();
+        ApiInfoRequest apiInfoRequest = ApiInfoRequest.builder().method("all").build();
         DsmApiResponse<ApiInfo.ApiInfoList> response = dsmClient.getApiInfo(apiInfoRequest);
 
         assertThat(response.isSuccess(), is(true));
@@ -33,7 +33,7 @@ class InfoApiClientTest extends DsmApiClient {
     void whenGetApiInfoForAuth_thenApiListIsReturned() throws IOException {
         setupWireMock_DsmInfoEndpoint("stubs/api-info-get-single-success.json");
 
-        ApiInfoRequest apiInfoRequest = ApiInfoRequest.builder().version(1).method("query").method("SYNO.API.auth").build();
+        ApiInfoRequest apiInfoRequest = ApiInfoRequest.builder().method("SYNO.API.auth").build();
         DsmApiResponse<ApiInfo.ApiInfoList> response = dsmClient.getApiInfo(apiInfoRequest);
 
         assertThat(response.isSuccess(), is(true));

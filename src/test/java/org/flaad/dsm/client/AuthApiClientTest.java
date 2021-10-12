@@ -23,7 +23,7 @@ class AuthApiClientTest extends DsmApiClient {
     void whenGetAuthTokenApi_thenAuthTokenIsReturned() throws IOException {
         setupWireMock_DsmAuthEndpoint("stubs/api-auth-get-success.json");
 
-        AuthRequest authRequest = AuthRequest.builder().version(6).method("login").account("user").passwd("pwd").build();
+        AuthRequest authRequest = AuthRequest.builder().account("user").passwd("pwd").build();
         DsmApiResponse<AuthSessionToken> response = authClient.login(authRequest);
 
         assertThat(response.isSuccess(), is(true));
@@ -40,7 +40,7 @@ class AuthApiClientTest extends DsmApiClient {
     void whenGetAuthTokenApi_thenPasswordIncorrectErrorReturned() throws IOException {
         setupWireMock_DsmAuthEndpoint("stubs/api-auth-incorrect-password-failure.json");
 
-        AuthRequest authRequest = AuthRequest.builder().version(6).method("login").account("user").passwd("pwd").build();
+        AuthRequest authRequest = AuthRequest.builder().account("user").passwd("pwd").build();
         DsmApiResponse<AuthSessionToken> response = authClient.login(authRequest);
 
         assertThat(response.isSuccess(), is(false));
