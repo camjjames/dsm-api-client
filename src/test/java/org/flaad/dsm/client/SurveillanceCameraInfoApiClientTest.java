@@ -31,9 +31,9 @@ class SurveillanceCameraInfoApiClientTest extends DsmApiClient {
 
         assertThat(response.getData().getCameras().get(0).getId(), is(nullValue()));
         assertThat(response.getData().getCameras().get(0).getPrivilege(), equalTo(31));
-        assertThat(response.getData().getCameras().get(0).getCamPath(), equalTo("cnRzcDovL2FkbWluOjIwMjBIVmZyZWQzNjAhQDE5Mi4xNjguMS4yNDA6NTU0L1N0cmVhbWluZy9jaGFubmVscy8xMDI="));
-        assertThat(response.getData().getCameras().get(0).isBlAudioPriv(), equalTo(true));
-        assertThat(response.getData().getCameras().get(0).isBlLiveviewPriv(), equalTo(true));
+        assertThat(response.getData().getCameras().get(0).getCameraPath(), equalTo("cnRzcDovL2FkbWluOjIwMjBIVmZyZWQzNjAhQDE5Mi4xNjguMS4yNDA6NTU0L1N0cmVhbWluZy9jaGFubmVscy8xMDI="));
+        assertThat(response.getData().getCameras().get(0).isAudioPrivilege(), equalTo(true));
+        assertThat(response.getData().getCameras().get(0).isLiveViewPrivilege(), equalTo(true));
     }
 
     @Test
@@ -52,9 +52,9 @@ class SurveillanceCameraInfoApiClientTest extends DsmApiClient {
 
         assertThat(response.getData().getCameras().get(0).getId(), is(nullValue()));
         assertThat(response.getData().getCameras().get(0).getPrivilege(), equalTo(31));
-        assertThat(response.getData().getCameras().get(0).getCamPath(), equalTo("cnRzcDovL2FkbWluOjIwMjBIVmZyZWQzNjAhQDE5Mi4xNjguMS4yNDA6NTU0L1N0cmVhbWluZy9jaGFubmVscy8xMDI="));
-        assertThat(response.getData().getCameras().get(0).isBlAudioPriv(), equalTo(true));
-        assertThat(response.getData().getCameras().get(0).isBlLiveviewPriv(), equalTo(true));
+        assertThat(response.getData().getCameras().get(0).getCameraPath(), equalTo("cnRzcDovL2FkbWluOjIwMjBIVmZyZWQzNjAhQDE5Mi4xNjguMS4yNDA6NTU0L1N0cmVhbWluZy9jaGFubmVscy8xMDI="));
+        assertThat(response.getData().getCameras().get(0).isAudioPrivilege(), equalTo(true));
+        assertThat(response.getData().getCameras().get(0).isLiveViewPrivilege(), equalTo(true));
     }
 
     @Test

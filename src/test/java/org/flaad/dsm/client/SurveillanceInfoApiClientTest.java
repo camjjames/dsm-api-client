@@ -2,7 +2,6 @@ package org.flaad.dsm.client;
 
 import org.flaad.dsm.client.model.DsmApiResponse;
 import org.flaad.dsm.client.model.SurveillanceStationInfo;
-import org.flaad.dsm.client.request.CameraInfoRequest;
 import org.flaad.dsm.client.request.DsmRequest;
 import org.junit.jupiter.api.Test;
 
@@ -29,13 +28,13 @@ class SurveillanceInfoApiClientTest extends DsmApiClient {
 
         assertThat(response.getData().getCameraNumber(), equalTo(6));
         assertThat(response.getData().getPath(), equalTo("/webman/3rdparty/SurveillanceStation/"));
-        assertThat(response.getData().getCustomizedPortHttp(), equalTo(222));
-        assertThat(response.getData().getCustomizedPortHttps(), equalTo(223));
+        assertThat(response.getData().getHttpPort(), equalTo(222));
+        assertThat(response.getData().getHttpsPort(), equalTo(223));
         assertThat(response.getData().getSerial(), equalTo("123456789"));
-        assertThat(response.getData().getLiscenseNumber(), equalTo(6));
+        assertThat(response.getData().getLicenseNumber(), equalTo(6));
         assertThat(response.getData().getMaxCameraSupport(), equalTo(40));
         assertThat(response.getData().getIsLicenseEnough(), equalTo(1));
-        assertThat(response.getData().getUserPriv(), equalTo(1));
+        assertThat(response.getData().getUserPrivilege(), equalTo(1));
         assertThat(response.getData().isEnableVideoRelay(), equalTo(false));
         assertThat(response.getData().getHostname(), equalTo("homenas"));
         assertThat(response.getData().getPluginHelperVersion(), equalTo(""));

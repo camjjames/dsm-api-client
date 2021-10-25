@@ -1,5 +1,6 @@
 package org.flaad.dsm.client.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +11,15 @@ import lombok.NoArgsConstructor;
 public class SurveillanceStationInfo {
 
     int cameraNumber;
-    int customizedPortHttp;
-    int customizedPortHttps;
+    @JsonProperty("customizedPortHttp")
+    int httpPort;
+    @JsonProperty("customizedPortHttps")
+    int httpsPort;
     boolean enableVideoRelay;
     String hostname;
     int isLicenseEnough;
-    int liscenseNumber;
+    @JsonProperty("liscenseNumber")
+    int licenseNumber;
     int maxCameraSupport;
     String path;
     String pluginHelperVersion;
@@ -24,7 +28,8 @@ public class SurveillanceStationInfo {
     String timezone;
     String timezoneTZDB;
     int uid;
-    int userPriv;
+    @JsonProperty("userPriv")
+    int userPrivilege;
     String webPluginVersion;
     Version version;
 

@@ -9,15 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class DsmApiInformation {
 
     private boolean setup = false;
     private final List<ApiDetails> apiList = new ArrayList<>();
-
-    public void setSetup(boolean hasBeenSetup) {
-        this.setup = hasBeenSetup;
-    }
 
     public void addApiDetail(String api, String minVersion, String maxVersion, String path, String requestFormat) {
         apiList.add(new ApiDetails(api, minVersion, maxVersion, path, requestFormat));

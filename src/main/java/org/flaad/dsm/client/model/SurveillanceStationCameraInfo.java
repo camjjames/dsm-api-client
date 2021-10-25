@@ -1,5 +1,6 @@
 package org.flaad.dsm.client.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +13,12 @@ import java.util.List;
 public class SurveillanceStationCameraInfo {
 
     String id;
-    boolean blAudioPriv;
-    boolean blLiveviewPriv;
-    String camPath;
+    @JsonProperty("blAudioPriv")
+    boolean audioPrivilege;
+    @JsonProperty("blLiveviewPriv")
+    boolean liveViewPrivilege;
+    @JsonProperty("camPath")
+    String cameraPath;
     int privilege;
 
 
