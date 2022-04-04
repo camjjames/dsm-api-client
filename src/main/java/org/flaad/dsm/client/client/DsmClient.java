@@ -1,8 +1,8 @@
 package org.flaad.dsm.client.client;
 
+import org.flaad.dsm.client.request.ApiInfoRequest;
 import org.flaad.dsm.client.model.ApiInfo;
 import org.flaad.dsm.client.model.DsmApiResponse;
-import org.flaad.dsm.client.request.ApiInfoRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.MediaType;

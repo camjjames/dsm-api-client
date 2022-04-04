@@ -1,9 +1,9 @@
 package org.flaad.dsm.client.client;
 
-import org.flaad.dsm.client.model.AuthSessionToken;
-import org.flaad.dsm.client.model.DsmApiResponse;
 import org.flaad.dsm.client.request.AuthRequest;
 import org.flaad.dsm.client.request.DsmRequest;
+import org.flaad.dsm.client.model.AuthSessionToken;
+import org.flaad.dsm.client.model.DsmApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.MediaType;
