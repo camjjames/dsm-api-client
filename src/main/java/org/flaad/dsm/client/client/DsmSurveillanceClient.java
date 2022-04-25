@@ -1,13 +1,13 @@
 package org.flaad.dsm.client.client;
 
-import org.flaad.dsm.client.request.CameraInfoRequest;
-import org.flaad.dsm.client.request.CameraListRequest;
-import org.flaad.dsm.client.request.CameraSnapshotRequest;
-import org.flaad.dsm.client.request.DsmRequest;
 import org.flaad.dsm.client.model.DsmApiResponse;
 import org.flaad.dsm.client.model.SurveillanceStationCameraDetail;
 import org.flaad.dsm.client.model.SurveillanceStationCameraInfo;
 import org.flaad.dsm.client.model.SurveillanceStationInfo;
+import org.flaad.dsm.client.request.CameraInfoRequest;
+import org.flaad.dsm.client.request.CameraListRequest;
+import org.flaad.dsm.client.request.CameraSnapshotRequest;
+import org.flaad.dsm.client.request.DsmRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.MediaType;
