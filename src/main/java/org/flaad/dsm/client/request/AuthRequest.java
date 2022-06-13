@@ -15,6 +15,7 @@ public class AuthRequest {
 
     String account;
     String passwd;
+
     String session;
     String format;
     String enable_syno_token;
