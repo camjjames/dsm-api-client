@@ -73,8 +73,8 @@
         <enforcer.requireReleaseDeps.onlyWhenRelease>true</enforcer.requireReleaseDeps.onlyWhenRelease>
         <enforcer.searchTransitive>true</enforcer.searchTransitive>
 
-        <checkstyle.version>10.3</checkstyle.version>
-        <spring-javaformat-checkstyle.version>0.0.33</spring-javaformat-checkstyle.version>
+        <checkstyle.version>10.3.1</checkstyle.version>
+        <spring-javaformat-checkstyle.version>0.0.34</spring-javaformat-checkstyle.version>
 
         <git-commit-maven.plugin>3.0.1</git-commit-maven.plugin>
         <exec-maven.plugin>1.6.0</exec-maven.plugin>
@@ -119,6 +119,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>${spring-cloud-openfeign.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bcprov-jdk15on</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Third Party -->
