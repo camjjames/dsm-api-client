@@ -2,7 +2,7 @@
 
 DSM API Client is a Spring Boot library for integrating with Synology DSM (DiskStation Manager) APIs. The library provides Feign clients for authentication and surveillance station operations, with built-in WireMock testing support.
 
-Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
+**ALWAYS follow these instructions completely before attempting any other approach.** Only fallback to additional search and context gathering if the information in these instructions is incomplete or found to be in error. These instructions contain all the essential information for working effectively in this codebase.
 
 ## Working Effectively
 
@@ -32,7 +32,7 @@ After successful build, artifacts are located in:
 
 ### Test Execution
 - ALWAYS run the full test suite after making changes: `./mvnw test`
-- All 15 tests must pass (8 test files testing API clients)
+- All 15 tests must pass (7 test files testing API clients)
 - Tests use WireMock to mock Synology DSM API endpoints
 - Test data is in `src/test/resources/stubs/*.json`
 
@@ -116,3 +116,56 @@ Developers using this library should:
 - Test execution: ~18 seconds
 - Clean builds: ~15 seconds
 - Individual test classes: ~3-5 seconds each
+
+### Quick Reference Commands
+```bash
+# Standard development workflow
+./mvnw clean package                    # Full clean build with tests (~15s)
+./mvnw test                            # Run tests only (~18s)
+./mvnw package -DskipTests             # Build without tests (~2s)
+./mvnw jacoco:report                   # Generate coverage report (<1s)
+
+# Verification commands
+jar -tf target/dsm-api-client-1.2.0.jar | grep DsmClient
+jar -tf target/dsm-api-client-1.2.0.jar | grep EnableDsmApiClient
+ls -la target/site/jacoco/index.html
+
+# Clean slate development
+./mvnw clean && ./mvnw package         # Complete rebuild (~15s)
+```
+
+### Example Integration Code
+For developers using this library:
+```java
+@SpringBootApplication
+@EnableDsmApiClient
+public class MyApplication {
+    
+    @Autowired
+    private DsmAuthClient authClient;
+    
+    @Autowired 
+    private DsmSurveillanceClient surveillanceClient;
+    
+    public void authenticateAndGetCameras() {
+        AuthRequest auth = AuthRequest.builder()
+            .account("admin")
+            .passwd("password")
+            .build();
+        DsmApiResponse<AuthSessionToken> response = authClient.login(auth);
+        // Use response...
+    }
+}
+```
+
+### Test Structure Overview
+The test suite includes 7 test classes covering:
+- `AuthApiClientTest`: Authentication workflows (3 tests)
+- `InfoApiClientTest`: API information queries (2 tests) 
+- `SurveillanceInfoApiClientTest`: Surveillance station info (2 tests)
+- `SurveillanceCameraInfoApiClientTest`: Camera information (2 tests)
+- `SurveillanceCameraListApiClientTest`: Camera listing (2 tests)
+- `SurveillanceCameraSnapshotApiClientTest`: Camera snapshots (2 tests)
+- `RequestInterceptorTest`: HTTP request interception (2 tests)
+
+All tests use WireMock with JSON stubs in `src/test/resources/stubs/` for predictable API responses.
