@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>3.3.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -51,38 +51,39 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <java.showDeprecation>true</java.showDeprecation>
         <java.showWarnings>true</java.showWarnings>
         <java.optimize>true</java.optimize>
         <java.debug>false</java.debug>
 
         <!-- Library Versions -->
-        <commons-io.version>2.11.0</commons-io.version>
-        <feign-jackson.version>12.1</feign-jackson.version>
-        <spring-cloud-openfeign.version>4.0.0</spring-cloud-openfeign.version>
-        <spring-cloud-starter-contract-stub-runner.version>4.0.0</spring-cloud-starter-contract-stub-runner.version>
-        <wiremock.version>2.27.2</wiremock.version>
+        <commons-io.version>2.18.0</commons-io.version>
+        <feign-jackson.version>13.5</feign-jackson.version>
+        <spring-cloud.version>2023.0.6</spring-cloud.version>
+        <spring-cloud-openfeign.version>4.1.4</spring-cloud-openfeign.version>
+        <spring-cloud-starter-contract-stub-runner.version>4.1.4</spring-cloud-starter-contract-stub-runner.version>
+        <wiremock.version>3.9.2</wiremock.version>
 
         <!-- Build Properties -->
-        <maven.version>3.5.0</maven.version>
+        <maven.version>3.9.0</maven.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <enforcer.requireReleaseDeps.onlyWhenRelease>true</enforcer.requireReleaseDeps.onlyWhenRelease>
         <enforcer.searchTransitive>true</enforcer.searchTransitive>
 
-        <checkstyle.version>10.6.0</checkstyle.version>
-        <spring-javaformat-checkstyle.version>0.0.35</spring-javaformat-checkstyle.version>
+        <checkstyle.version>10.21.0</checkstyle.version>
+        <spring-javaformat-checkstyle.version>0.0.47</spring-javaformat-checkstyle.version>
 
-        <git-commit-maven.plugin>3.0.1</git-commit-maven.plugin>
-        <exec-maven.plugin>1.6.0</exec-maven.plugin>
-        <maven-checkstyle.plugin>3.1.2</maven-checkstyle.plugin>
-        <maven-dependency.plugin>3.3.0</maven-dependency.plugin>
-        <maven-jacoco.plugin>0.8.8</maven-jacoco.plugin>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <sonar-maven.plugin>3.9.1.2184</sonar-maven.plugin>
-        <dependency-check-maven.version>6.5.0</dependency-check-maven.version>
+        <git-commit-maven.plugin>7.0.1</git-commit-maven.plugin>
+        <exec-maven.plugin>3.5.0</exec-maven.plugin>
+        <maven-checkstyle.plugin>3.5.0</maven-checkstyle.plugin>
+        <maven-dependency.plugin>3.8.1</maven-dependency.plugin>
+        <maven-jacoco.plugin>0.8.12</maven-jacoco.plugin>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+        <sonar-maven.plugin>4.0.0.4121</sonar-maven.plugin>
+        <dependency-check-maven.version>11.1.0</dependency-check-maven.version>
     </properties>
 
     <repositories>
@@ -94,6 +95,18 @@
             <url>https://repo.spring.io/milestone</url>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Spring Dependencies -->
@@ -154,7 +167,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.tomakehurst</groupId>
+            <groupId>org.wiremock</groupId>
             <artifactId>wiremock</artifactId>
             <version>${wiremock.version}</version>
             <scope>test</scope>
