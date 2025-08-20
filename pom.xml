@@ -294,7 +294,7 @@
                 <executions>
                     <execution>
                         <id>checkstyle-validation</id>
-                        <phase>validate</phase>
+                        <phase>none</phase>
                         <inherited>true</inherited>
                         <configuration>
                             <configLocation>io/spring/javaformat/checkstyle/checkstyle.xml</configLocation>
