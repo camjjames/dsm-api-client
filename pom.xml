@@ -58,6 +58,7 @@
         <java.debug>false</java.debug>
 
         <!-- Library Versions -->
+        <lombok.version>1.18.38</lombok.version>
         <commons-io.version>2.18.0</commons-io.version>
         <feign-jackson.version>13.5</feign-jackson.version>
         <spring-cloud.version>2023.0.6</spring-cloud.version>
@@ -135,6 +136,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
